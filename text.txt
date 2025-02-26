@@ -1,0 +1,139 @@
+import React, { useState } from 'react';
+import './index.css'; // Certifique-se de que o Tailwind está importado corretamente
+
+import React, { useState } from 'react': Isso importa o React e o hook useState para controlar os estados no componente.
+
+import './index.css': Esse import garante que o arquivo de estilos index.css, onde você configura o Tailwind CSS, seja incluído no seu projeto.
+
+2.2 Criação de Estados
+
+const [email, setEmail] = useState('');
+const [password, setPassword] = useState('');
+const [error, setError] = useState('');
+
+email e setEmail: Controla o valor do campo de e-mail. O estado inicial é uma string vazia ('').
+
+password e setPassword: Controla o valor do campo de senha. O estado inicial também é uma string vazia.
+
+error e setError: Armazena mensagens de erro que podem ser exibidas se algum campo não for preenchido corretamente.
+
+2.3 Função handleSubmit (Envio do Formulário)
+
+const handleSubmit = (e) => {
+  e.preventDefault();
+  if (email === '' || password === '') {
+    setError('Por favor, preencha todos os campos.');
+  } else {
+    setError('');
+    console.log('Email:', email);
+    console.log('Senha:', password);
+  }
+};
+
+e.preventDefault(): Previne que o formulário seja enviado de forma tradicional, permitindo que você controle a ação do envio com JavaScript.
+
+Verificação: Se os campos de e-mail ou senha estiverem vazios, define o erro como 'Por favor, preencha todos os campos.'.
+
+console.log: Caso contrário, ele limpa o erro e imprime os valores de e-mail e senha no console.
+
+2.4 Estrutura HTML do Formulário
+
+<div className="min-h-screen bg-gray-900 flex justify-center items-center">
+  <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+    <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Login</h2>
+
+min-h-screen: Define que a altura mínima do contêiner será igual à altura da tela, garantindo que o conteúdo ocupe a tela inteira.
+
+bg-gray-900: Define um fundo escuro para a tela inteira.
+
+flex justify-center items-center: Utiliza o Flexbox para centralizar o conteúdo tanto vertical quanto horizontalmente.
+
+bg-white p-8 rounded-lg shadow-lg w-full max-w-md: Define o estilo do formulário de login. O fundo é branco, com padding, bordas arredondadas e uma sombra para dar destaque. O max-w-md define uma largura máxima para o formulário (média).
+
+2.5 Campo de E-mail e Senha
+
+<div className="mb-4">
+  <input
+    type="email"
+    placeholder="E-mail"
+    value={email}
+    onChange={(e) => setEmail(e.target.value)}
+    className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+  />
+</div>
+
+type="email": Especifica que o campo é para um e-mail.
+
+value={email}: O valor do campo de input é controlado pelo estado email.
+
+onChange={(e) => setEmail(e.target.value)}: Atualiza o estado email sempre que o usuário digitar algo.
+
+Classes do Tailwind CSS:
+
+w-full: Define a largura do campo de input como 100% da largura disponível.
+
+p-4: Adiciona padding dentro do campo de input.
+
+border e border-gray-300: Define uma borda cinza clara.
+
+rounded-lg: Adiciona bordas arredondadas ao campo de input.
+
+focus:outline-none focus:ring-2 focus:ring-blue-500: Remove o outline padrão do navegador e adiciona um contorno azul quando o campo é focado.
+
+2.6 Mensagem de Erro (se houver)
+
+{error && (
+  <div className="mb-4 text-center text-red-500">
+    <p>{error}</p>
+  </div>
+)}
+
+{error && (...)}: Exibe a mensagem de erro somente se houver algo no estado error.
+
+Classes do Tailwind:
+text-center: Centraliza o texto da mensagem.
+text-red-500: Dá a cor vermelha à mensagem de erro.
+
+2.7 Botão de Enviar
+
+<button
+  type="submit"
+  className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-200"
+>
+  Entrar
+</button>
+
+type="submit": Define o botão como um botão de envio de formulário.
+
+Classes do Tailwind:
+w-full: O botão ocupa toda a largura disponível.
+
+bg-blue-600: Define a cor de fundo azul.
+
+text-white: Define a cor do texto como branco.
+
+py-3: Adiciona padding vertical no botão.
+
+rounded-lg: Adiciona bordas arredondadas.
+
+hover:bg-blue-700: Altera a cor de fundo para azul escuro quando o botão é passado com o mouse (hover).
+
+transition duration-200: Define uma transição suave de 200ms para a mudança de cor.
+
+2.8 Link para Recuperação de Senha
+
+<p className="text-center text-sm text-gray-600 mt-4">
+  <a href="#" className="text-blue-500 hover:underline">
+    Esqueceu sua senha?
+  </a>
+</p>
+
+text-center: Centraliza o texto do link.
+
+text-sm: Torna o texto pequeno.
+
+text-gray-600: Define a cor do texto como cinza.
+
+mt-4: Adiciona uma margem superior.
+
+text-blue-500 hover:underline: Dá a cor azul ao link e adiciona um sublinhado quando o usuário passar o mouse (hover).
